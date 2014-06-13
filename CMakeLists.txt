@@ -7,15 +7,7 @@ project(OO_DMP_BBO)
 
 # Some settings related to building/installing libraries and header files
 # Set this to STATIC if you want to build static libraries instead.
-option(BUILD_SHARED_LIBS "Enable this option to build shared libraries" OFF)
-
-if(BUILD_SHARED_LIBS)
 set(SHARED_OR_STATIC "SHARED")
-else()
-set(SHARED_OR_STATIC "STATIC")
-endif()
-
-
 set(LIB_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/lib)
 set(INCLUDE_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/include)
 
@@ -42,6 +34,9 @@ endif()
 # directories of additional CMake modules (ie. MacroOutOfSourceBuild.cmake):
 set(CMAKE_MODULE_PATH ${oo_dmp_bbo_SOURCE_DIR}/cmake/modules "${CMAKE_SOURCE_DIR}/src/functionapproximators/" ${CMAKE_MODULE_PATH})
 
+# The command above returns a strange result, look:
+#message("module path : "  ${CMAKE_MODULE_PATH})
+
 include_directories(${CMAKE_SOURCE_DIR}/src)
 link_directories(${CMAKE_SOURCE_DIR}/lib)
 
@@ -65,6 +60,7 @@ include_directories ( ${Boost_INCLUDE_DIRS} )
 ###############################################################################
 # Things to compile are in the src/ directory
 add_subdirectory(src)
+add_subdirectory(python)
 
 ###############################################################################
 # Generate doxygen documentation from CMake
