@@ -94,21 +94,33 @@ void runImitationAndOptimization(vector<FunctionApproximator*> function_approxim
   
   runOptimizationParallelDeprecated(task, task_solver, distributions, updater, n_updates, n_samples_per_update,directory);
   
+  Trajectory trajectory_optim;
+  dmp->analyticalSolution(trajectory.ts(),trajectory_optim);
+
   // Save the initial data (doing this after runOptimization so that it can take care of
   // checking/making the directory)
   if (!directory.empty())
   {
     std::ofstream outfile;
     
-    outfile.open((directory+"traj_demo.txt").c_str()); 
+    outfile.open(directory+"/traj_demo.txt");
+    outfile << "Demonstrated trajectory of " << n_dims_dmp << " dimensions." << std::endl
+            << "Initial state is " << std::endl << dmp->initial_state() << std::endl
+            << "Attractor state is " << std::endl << dmp->attractor_state() << std::endl
+            << "         t         y1         y2         y1d         y2d         y1dd         y2dd" << std::endl;
     outfile << trajectory; 
     outfile.close();
     
-    outfile.open((directory+"traj_repro.txt").c_str()); 
+    outfile.open(directory+"/traj_repro.txt");
     outfile << trajectory_repro; 
     outfile.close();
+
+    outfile.open(directory+"/traj_optim.txt");
+    outfile << trajectory_optim;
+    outfile.close();
+
+    std::cout << directory << "/traj_demo.txt and traj_repro.txt have been written." << std::endl;
   }
-  
 
 }
 
