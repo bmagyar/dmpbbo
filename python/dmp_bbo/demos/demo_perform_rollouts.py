@@ -8,8 +8,10 @@ sys.path.append(lib_path)
 from dmp_bbo.task_solver import TaskSolver
 from dmp_bbo.rollout import Rollout, saveRolloutsToDirectory
 
+
 class DemoTaskSolverApproximateQuadraticFunction(TaskSolver):
-    """The task solver tunes the parameters a and c such that the function \f$ y = a*x^2 + c \f$ best matches a set of target values y_target for a set of input values x"""
+    """The task solver tunes the parameters a and c such that the function
+    \f$ y = a*x^2 + c \f$ best matches a set of target values y_target for a set of input values x"""
     
     def __init__(self,inputs):
         """\param[in] inputs x in \f$ y = a*x^2 + c \f$"""
@@ -31,7 +33,7 @@ class DemoTaskSolverApproximateQuadraticFunction(TaskSolver):
 def performRolloutsFakeRobot(update_dir):
     
     print('RUNNING TASK SOLVER')
-    inputs = np.linspace(-1.5,1.5,21);
+    inputs = np.linspace(-1.5,1.5,21)
     task_solver = DemoTaskSolverApproximateQuadraticFunction(inputs)
     
     print('  * Loading mean from "'+update_dir+'/distribution_mean.txt"')

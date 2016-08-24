@@ -55,7 +55,11 @@ using namespace Eigen;
 
 namespace DmpBbo {
   
-TaskSolverDmp::TaskSolverDmp(Dmp* dmp, std::set<std::string> optimize_parameters, double dt, double integrate_dmp_beyond_tau_factor, bool use_normalized_parameter)
+TaskSolverDmp::TaskSolverDmp(Dmp* dmp,
+                             std::set<std::string> optimize_parameters,
+                             double dt,
+                             double integrate_dmp_beyond_tau_factor,
+                             bool use_normalized_parameter)
 : dmp_(dmp)
 {
   dmp_->setSelectedParameters(optimize_parameters);
@@ -70,7 +74,9 @@ void TaskSolverDmp::set_perturbation(double perturbation_standard_deviation)
   dmp_->set_perturbation_analytical_solution(perturbation_standard_deviation);
 }
 
-void TaskSolverDmp::performRollout(const Eigen::VectorXd& sample, const Eigen::VectorXd& task_parameters, Eigen::MatrixXd& cost_vars) const
+void TaskSolverDmp::performRollout(const Eigen::VectorXd& sample,
+                                   const Eigen::VectorXd& task_parameters,
+                                   Eigen::MatrixXd& cost_vars) const
 {
 
   // sample          = n_parallel * sum(nmodel_parameters_)
