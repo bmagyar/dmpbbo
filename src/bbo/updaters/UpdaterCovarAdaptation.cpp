@@ -51,7 +51,10 @@ UpdaterCovarAdaptation::UpdaterCovarAdaptation(double eliteness, std::string wei
   assert(relative_lower_bound_>=0.0 && relative_lower_bound_<=1.0);
 }
 
-void UpdaterCovarAdaptation::updateDistribution(const DistributionGaussian& distribution, const MatrixXd& samples, const VectorXd& costs, VectorXd& weights, DistributionGaussian& distribution_new) const
+void UpdaterCovarAdaptation::updateDistribution(const DistributionGaussian& distribution,
+                                                const MatrixXd& samples, const VectorXd& costs,
+                                                VectorXd& weights,
+                                                DistributionGaussian& distribution_new) const
 {
   int n_samples = samples.rows();
   int n_dims = samples.cols();
