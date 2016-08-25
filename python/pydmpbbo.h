@@ -76,8 +76,8 @@ boost::python::list getCovariance();
 private:
     DmpBbo::DistributionGaussian* gaussian;
     DmpBbo::Updater* updater;
-    vector<DmpBbo::UpdateSummary> update_summaries;
-    DmpBbo::UpdateSummary update_summary;
+    VectorXd weights;
+    DmpBbo::DistributionGaussian* distribution_new;
 };
 
 #endif

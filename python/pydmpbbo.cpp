@@ -92,6 +92,7 @@ UpdaterCovarAdaptation::UpdaterCovarAdaptation(double eliteness, string weightin
         }
     }
     gaussian = new DmpBbo::DistributionGaussian(init_mean, init_covar);
+    distribution_new = gaussian->clone();
     updater = new DmpBbo::UpdaterCovarAdaptation(eliteness,weighting_method,base_level,diag_only,learning_rate);
 }
 
@@ -106,11 +107,11 @@ void UpdaterCovarAdaptation::updateDistribution(const boost::python::list& _samp
     for (int i=0; i < boost::python::len(_samples); i++) {
         costs(i) = boost::python::extract<double>(_costs[i]);
     }
-    updater->updateDistribution(*gaussian, samples, costs, *gaussian, update_summary);
+    updater->updateDistribution(*gaussian, samples, costs, weights, *distribution_new);
 }
 
 boost::python::list UpdaterCovarAdaptation::getMean(){
-    VectorXd mean(update_summary.distribution_new->mean());
+    VectorXd mean(distribution_new->mean());
     boost::python::list res;
     for(int i = 0; i < mean.size(); i++) {
         res.append(mean(i));
@@ -119,7 +120,7 @@ boost::python::list UpdaterCovarAdaptation::getMean(){
 }
 
 boost::python::list UpdaterCovarAdaptation::getCovariance(){
-    MatrixXd covar(update_summary.distribution_new->covar());
+    MatrixXd covar(distribution_new->covar());
     boost::python::list res;
     for(int i = 0; i < covar.rows(); i++) {
         boost::python::list row;
