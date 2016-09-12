@@ -34,6 +34,13 @@
 #include <boost/random/variate_generator.hpp>
 #include <boost/random/normal_distribution.hpp>
 
+#include <boost/serialization/export.hpp>
+#include <boost/serialization/vector.hpp>
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/xml_iarchive.hpp>
+#include <boost/archive/xml_oarchive.hpp>
+
 #include <set>
 
 namespace DmpBbo {
@@ -387,7 +394,18 @@ private:
    * See http://www.boost.org/doc/libs/1_55_0/libs/serialization/doc/tutorial.html#simplecase
    */
   template<class Archive>
-  void serialize(Archive & ar, const unsigned int version);
+  void serialize(Archive & ar, const unsigned int version)
+  {
+    // serialize base class information
+    ar & BOOST_SERIALIZATION_BASE_OBJECT_NVP(DynamicalSystem);
+    ar & BOOST_SERIALIZATION_BASE_OBJECT_NVP(Parameterizable);
+
+    ar & BOOST_SERIALIZATION_NVP(goal_system_);
+    ar & BOOST_SERIALIZATION_NVP(spring_system_);
+    ar & BOOST_SERIALIZATION_NVP(phase_system_);
+    ar & BOOST_SERIALIZATION_NVP(gating_system_);
+    ar & BOOST_SERIALIZATION_NVP(function_approximators_);
+  }
 
 };
 
