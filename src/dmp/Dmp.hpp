@@ -386,7 +386,7 @@ private:
   boost::variate_generator<boost::mt19937&, boost::normal_distribution<> > *analytical_solution_perturber_;
   
 protected:
-   Dmp(void) {};
+   Dmp(void) {}
 
 private:
   /** Give boost serialization access to private members. */  
