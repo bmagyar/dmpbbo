@@ -8,6 +8,7 @@ project(OO_DMP_BBO)
 # Some settings related to building/installing libraries and header files
 # Set this to STATIC if you want to build static libraries instead.
 set(SHARED_OR_STATIC "SHARED")
+set(CMAKE_INSTALL_PREFIX "/usr/local")
 set(LIB_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/lib)
 set(INCLUDE_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/include)
 
