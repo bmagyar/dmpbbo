@@ -28,6 +28,10 @@
 #include "functionapproximators/Parameterizable.hpp"
 
 #include "dmpbbo_io/EigenBoostSerialization.hpp"
+#include "dynamicalsystems/SpringDamperSystem.hpp"
+#include "functionapproximators/FunctionApproximator.hpp"
+#include "Trajectory.hpp"
+
 #include <boost/serialization/assume_abstract.hpp>
 
 #include <boost/random.hpp>
@@ -45,10 +49,10 @@
 
 namespace DmpBbo {
   
-// forward declaration
-class FunctionApproximator;
-class SpringDamperSystem;
-class Trajectory;
+// forward declaration // removed since blocked build on Ubuntu 16.04
+//class FunctionApproximator;
+//class SpringDamperSystem;
+//class Trajectory;
 
 /** \defgroup Dmps Dynamic Movement Primitives
  */
