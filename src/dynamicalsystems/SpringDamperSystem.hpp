@@ -125,7 +125,7 @@ private:
    * Default constructor.
    * \remarks This default constuctor is required for boost::serialization to work. See \ref sec_boost_serialization_ugliness
    */
-  SpringDamperSystem(void) {};
+  SpringDamperSystem(void) {}
   
   /** Give boost serialization access to private members. */  
   friend class boost::serialization::access;

@@ -79,7 +79,7 @@ private:
    * constructor should not be called by other classes, it is private (boost::serialization is a
    * friend)
    */
-  TaskSolverDmp(void) {};
+  TaskSolverDmp(void) {}
 
   /** Give boost serialization access to private members. */  
   friend class boost::serialization::access;
